@@ -19,8 +19,8 @@ Add entries to a (multilingual) DSL dictionary file from the CLI. Append both L1
 
 ## SECONDLY
 * Adjust the script to suit your reality:
- * write the path to the existing DSL dictionary file
- * write the path to a temporary working file
+  * write the path to the existing DSL dictionary file
+  * write the path to a temporary working file
 
 ## USAGE
   ``L1L2-sh "word in L1 (headword) : optional L1 definition : optional L1 source = word in L2 (article) : optional L2 definition : optional L2 source"``
