@@ -47,4 +47,4 @@ A list of easy fixes (I've tried them all...):
 * Check the proper file path.
 * Remember to use the "" signs around the entry expression.
 * Check your spelling.
-* There's nothing the script can do for it. Different Wikipedia articles just work in different ways.
+* Different Wikipedia articles just work in different ways. There's nothing the script can do for it.
