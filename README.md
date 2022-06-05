@@ -34,7 +34,7 @@ Words can contain parts in (parenthesis). These won't be displayed in GoldenDict
 
 Without the ``=`` separator, the entry is considered to be a monolingual L1 entry. This enables you to create monolingual entries. These are marked with an additional asterisk, so that when searching for a word in GoldenDict, one easily can recognize the bilingual terms (words with a translation) and terms that have only monolingual information connected to them. It is possible to add Wikipedia information to monolingual entries, but do note that as of today, Wikipedia is searched in L1. 
 
-Entries starting with = should end up as monolingual L2 entries (with Wikipedia searched in L2), but it seems not to be the case.
+Entries starting with ``=`` should end up as monolingual L2 entries (with Wikipedia searched in L2), but it seems not to be the case.
 
 Dictionary entries can be enriched with Wikipedia articles. This function is per default switched off. In order to make the script add information from Wikipedia, you need to un-comment certain parts in the script.
 
@@ -43,8 +43,8 @@ A list of easy fixes (I've tried them all...):
 * Do create a DSL file first, so that you have a file to add stuff into.
 * Save the dictionary file with UTF-16 encoding.
 * Use the extension ``.dsl`` for your dictionary file.
-* Make the script executable (``chmode +x L1L".sh``)
+* Make the script executable (``chmode +x L1L2.sh``)
 * Check the proper file path.
-* Remember to use the "" signs around the entry expression.
+* Remember to use the ``""`` signs around the entry expression.
 * Check your spelling.
 * Different Wikipedia articles just work in different ways. There's nothing the script can do for it.
