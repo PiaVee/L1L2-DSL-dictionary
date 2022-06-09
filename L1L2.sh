@@ -21,8 +21,8 @@ L1L2=$1
 
 
 # files to work with
-origDict="/b-levy/Zettlr/Oma-FI-NO-FI-sanasto/Pian-oma-FINOFI-sanasto.dsl"  # path to your existing DSL file
-workingDict="/home/pia/bin/testifilee.txt" # path to a temporary text file
+origDict="/path/to/the-existing.dsl"  # path to your existing DSL file
+workingDict="/path/to/a-temporary-file.txt" # path to a temporary text file
 
 
 # often used comments
@@ -63,12 +63,14 @@ L2src=$(echo "$L1L2" | awk 'BEGIN { FS = " = " } ; { print $2 }' | awk 'BEGIN { 
 
 
 # If you want to incorporate information from Wikipedia in your dictionary, uncomment this part and the corresponding if clauses:
+
 # read -p "ISO language code for your L1: " L1
 # L1wiki=$(echo $(wikit --lang $L1 $L1word))
 # L1wikiSrc=$(echo $(wikit --lang $L1 $L1word --link) | awk 'BEGIN { FS = "://" } ; { print $2 }')
 # read -p "ISO language code for your L2: " L2
 # L2wiki=$(echo $(wikit --lang $L2 $L2word))
 # L2wikiSrc=$(echo $(wikit --lang $L2 $L2word --link) | awk 'BEGIN { FS = "://" } ; { print $2 }')
+
 # If you will use the script for one specific L1-L2 pair, delete the read-lines and replace $L1 and $L2 with corresponding ISO language codes.
 
 
@@ -113,7 +115,7 @@ printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -123,7 +125,7 @@ printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -134,7 +136,7 @@ printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -144,7 +146,7 @@ printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -158,7 +160,7 @@ printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -167,7 +169,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -177,7 +179,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -187,7 +189,7 @@ printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -201,7 +203,7 @@ printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -210,7 +212,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -220,7 +222,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -230,7 +232,7 @@ printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -244,7 +246,7 @@ printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -252,7 +254,7 @@ printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
 # fi
@@ -260,7 +262,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
 # fi
@@ -268,7 +270,7 @@ printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -281,7 +283,7 @@ f110111() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -291,7 +293,7 @@ printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -302,7 +304,7 @@ printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -311,7 +313,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -324,7 +326,7 @@ f110110() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -333,7 +335,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -343,7 +345,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -352,7 +354,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -365,7 +367,7 @@ f110101() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -374,7 +376,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -384,7 +386,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -393,7 +395,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -406,7 +408,7 @@ f110100() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "$myL1definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -414,7 +416,7 @@ printf "\t%s\n" "$myL1definition"
 printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
 # fi
@@ -422,14 +424,14 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n\t\ \n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
 # fi
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -442,7 +444,7 @@ f101111() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -452,7 +454,7 @@ printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -463,7 +465,7 @@ printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -472,7 +474,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -485,7 +487,7 @@ f101110() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -494,7 +496,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -504,7 +506,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -514,7 +516,7 @@ printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL1definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -527,7 +529,7 @@ f101101() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
 # fi
@@ -535,7 +537,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -545,7 +547,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -554,7 +556,7 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -567,7 +569,7 @@ f101100() {
 printf "\n\n%s\n" "$L1headword"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -575,7 +577,7 @@ printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
 # fi
@@ -583,14 +585,14 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
 # fi
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex][b]$citedSourceL1[/b]: $L1src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -602,7 +604,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 f100111() {
 printf "\n\n%s\n" "$L1headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
 # fi
@@ -610,7 +612,7 @@ printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -621,7 +623,7 @@ printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -629,7 +631,7 @@ printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
 # fi
@@ -640,14 +642,14 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 f100110() {
 printf "\n\n%s\n" "$L1headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
 # fi
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex]$myL2definition[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -657,7 +659,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "$myL2definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -665,7 +667,7 @@ printf "\t%s\n" "$myL2definition"
 printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
@@ -677,14 +679,14 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 f100101() {
 printf "\n\n%s\n" "$L1headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
 # fi
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 printf "\t%s\n" "[m4][ex][b]$citedSourceL2[/b]: $L2src[/ex][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
@@ -694,7 +696,7 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -702,7 +704,7 @@ printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
 # fi
@@ -713,13 +715,13 @@ printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 f100100() {
 printf "\n\n%s\n" "$L1headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
 # fi
 printf "\t%s\n" "[m1]※ [b][c darkred]$L2articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L2wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL2[/b]: $L2wikiSrc[/ex][/m]"
 # fi
@@ -727,13 +729,13 @@ printf "\t%s\n" "\ "
 printf "\t%s\n" "[m1]($dateWhenAdded $dmy)[/m]"
 printf "\n\n%s\n" "$L2headword"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
 # fi
 printf "\t%s\n" "[m1]※ [b][c darkblue]$L1articleWord[/c][/b][/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "[m4][ex]$L1wiki[/ex][/m]"
 # printf "\t%s\n" "[m5][ex][b]$citedSourceL1[/b]: $L1wikiSrc[/ex][/m]"
 # fi
@@ -746,7 +748,7 @@ printf "\n\n%s\n" "$L1headword *" # the asterisk is there to mark that this head
 printf "\t%s\n" "$myL1definition"
 printf "\t%s\n" "[m1][b]$citedSourceL1[/b]: $L1src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -758,7 +760,7 @@ f110000() {
 printf "\n\n%s\n" "$L1headword *" # the asterisk is there to mark that this headword has no translation
 printf "\t%s\n" "$myL1definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L1wiki" ]]; then
+# if [[ !"$L1wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L1wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL1[/b]: $L1wikiSrc[/m]"
@@ -771,7 +773,7 @@ printf "\n\n%s\n" "$L2headword *" # the asterisk is there to mark that this head
 printf "\t%s\n" "$myL2definition"
 printf "\t%s\n" "[m1][b]$citedSourceL2[/b]: $L2src[/m]"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
@@ -783,7 +785,7 @@ f000110() {
 printf "\n\n%s\n" "$L2headword *" # the asterisk is there to mark that this headword has no translation
 printf "\t%s\n" "$myL2definition"
 # If you want to use information from Wikipedia, uncomment this if clause:
-# if [[ -n "$L2wiki" ]]; then
+# if [[ !"$L2wiki" == ".*not found :^(" ]]; then
 # printf "\t%s\n" "\ "
 # printf "\t%s\n" "$L2wiki"
 # printf "\t%s\n\t\ \n" "[m1][b]$citedSourceL2[/b]: $L2wikiSrc[/m]"
